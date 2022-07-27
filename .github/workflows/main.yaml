@@ -2,7 +2,7 @@ name: fastapi_hms
 
 on:
   push:
-    branches: ["main","feature/cicd"]
+    branches: ["main"]
   pull_request:
     branches: ["main","dev"]
 
