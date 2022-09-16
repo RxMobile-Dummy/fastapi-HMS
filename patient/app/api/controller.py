@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from authentication import Authentication
 from jwt_utility import JWTUtility
 import patient
-from patient.email_manager import EmailManager
+# from patient.email_manager import EmailManager
 from patient.app.response import Response as ResponseData
 from patient.app.models import models,schemas
 from hospital.app.api.controller import check_if_hospital_id_is_valid
@@ -172,59 +172,59 @@ def get_patient(request:Request,database: Session, contact_number : str):
     return database.query(models.Patient).filter(models.Patient.contact_number == contact_number).first()
 
 async def patient_forget_password(database: Session, email : Optional[str] = None):
-    """Function to tell user if patient with given contact number already exists or not"""
-    db_patient_email = database.query(models.Patient).filter(models.Patient.email == email).first()
-    if not db_patient_email:
-        return ResponseData.success_without_data("Email id is invalid")
-    digits = "0123456789"
-    OTP = ""
-    for i in range(6):
-       OTP += digits[math.floor(random.random() * 10)]
-    otp = list(OTP)
-    if otp[0] == "0":
-        otp[0] = "1"
-        OTP = "" 
-        for i in range(0,len(otp)):
-          OTP+=otp[i]
-    template = '''
-<!DOCTYPE html>
-<html>
-<body>
+#     """Function to tell user if patient with given contact number already exists or not"""
+#     db_patient_email = database.query(models.Patient).filter(models.Patient.email == email).first()
+#     if not db_patient_email:
+#         return ResponseData.success_without_data("Email id is invalid")
+#     digits = "0123456789"
+#     OTP = ""
+#     for i in range(6):
+#        OTP += digits[math.floor(random.random() * 10)]
+#     otp = list(OTP)
+#     if otp[0] == "0":
+#         otp[0] = "1"
+#         OTP = "" 
+#         for i in range(0,len(otp)):
+#           OTP+=otp[i]
+#     template = '''
+# <!DOCTYPE html>
+# <html>
+# <body>
 
-<h1>Otp for reseting password</h1>
+# <h1>Otp for reseting password</h1>
 
-<p>Your otp is {0}</p>
+# <p>Your otp is {0}</p>
 
-</body>
-</html>
-'''.format(OTP)
-    print("sdds")
-    await EmailManager().forgot_password(
-                            email,
-                            "Forgot Password",
-                            template
-                        ),
-    db_patient_otp = database.query(models.Patient_Otp_For_Password).filter(models.Patient_Otp_For_Password.user_id == db_patient_email.id).first()
-    if db_patient_otp:
-        print(models.Patient_Otp_For_Password.user_id == db_patient_email.id)
-        database.query(models.Patient_Otp_For_Password).filter(db_patient_otp.user_id == db_patient_email.id).update({ 
-        models.Patient_Otp_For_Password.user_id : db_patient_email.id,
-        models.Patient_Otp_For_Password.otp: OTP,
-        models.Patient_Otp_For_Password.updated_at: str(datetime.now()),
-    })
-        print(f"dsfOTP {OTP}")
-        database.flush()
-        database.commit()
-    else:
-        patient_data = {
-        "user_id" : db_patient_email.id,
-        "otp" : OTP,
-        "created_at" : str(datetime.now())
-    }
-        db_patient = models.Patient_Otp_For_Password(**patient_data)
-        database.add(db_patient)
-        database.commit()
-        database.refresh(db_patient)
+# </body>
+# </html>
+# '''.format(OTP)
+#     print("sdds")
+#     await EmailManager().forgot_password(
+#                             email,
+#                             "Forgot Password",
+#                             template
+#                         ),
+#     db_patient_otp = database.query(models.Patient_Otp_For_Password).filter(models.Patient_Otp_For_Password.user_id == db_patient_email.id).first()
+#     if db_patient_otp:
+#         print(models.Patient_Otp_For_Password.user_id == db_patient_email.id)
+#         database.query(models.Patient_Otp_For_Password).filter(db_patient_otp.user_id == db_patient_email.id).update({ 
+#         models.Patient_Otp_For_Password.user_id : db_patient_email.id,
+#         models.Patient_Otp_For_Password.otp: OTP,
+#         models.Patient_Otp_For_Password.updated_at: str(datetime.now()),
+#     })
+#         print(f"dsfOTP {OTP}")
+#         database.flush()
+#         database.commit()
+#     else:
+#         patient_data = {
+#         "user_id" : db_patient_email.id,
+#         "otp" : OTP,
+#         "created_at" : str(datetime.now())
+#     }
+#         db_patient = models.Patient_Otp_For_Password(**patient_data)
+#         database.add(db_patient)
+#         database.commit()
+#         database.refresh(db_patient)
     return ResponseData.success_without_data("Otp has been successfully sent on your email address")
 
 
