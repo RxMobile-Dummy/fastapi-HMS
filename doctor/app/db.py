@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 import doctor.config
 
 DATABASE_URL = doctor.config.Config.DATABASE_URL
-doctor_engine = create_engine(url='postgresql+psycopg2://akash.kareliya:123@host.docker.internal:543211/doctor')
+doctor_engine = create_engine(url='postgresql+psycopg2://akash.kareliya:123@host.docker.internal:54321/doctor')
 
 SessionLocal = sessionmaker(bind=doctor_engine,autocommit=False,autoflush=False)
 
