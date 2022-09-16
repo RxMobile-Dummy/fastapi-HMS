@@ -8,4 +8,4 @@ class Department(Base):
     name = Column(String, index=True)
     head_id = Column(String, index=True)
 
-DATABASE_URL = 'postgresql+psycopg2://akash.kareliya:123@localhost:5432/department'
+DATABASE_URL = 'postgresql+psycopg2://akash.kareliya:123@localhost:54321/department'

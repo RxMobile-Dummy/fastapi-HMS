@@ -3,7 +3,7 @@ services:
   my_db:
     build: ./docker/database/
     ports:
-      - "5432:5432"
+      - "54321:5432"
     restart: unless-stopped
     env_file:
       - ./docker/database/dbcredentials.env
