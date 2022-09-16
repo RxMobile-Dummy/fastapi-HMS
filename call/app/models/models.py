@@ -11,4 +11,4 @@ class Call(Base):
     on_call_start = Column(String, index=True)
     on_call_end = Column(String, index=True)
 
-DATABASE_URL = 'postgresql://anirudh.chawla:123@localhost/call'
+DATABASE_URL = 'postgresql+psycopg2://akash.kareliya:123@localhost/call'

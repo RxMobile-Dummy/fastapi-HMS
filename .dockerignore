@@ -1,0 +1,5 @@
+myenv
+docker
+.vscode
+__pycache__
+test.py.zip

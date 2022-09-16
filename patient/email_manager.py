@@ -2,7 +2,6 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import logging
-from multiprocessing import AuthenticationError
 import smtplib
 from jinja2 import Environment
 from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
@@ -13,12 +12,12 @@ CHARSET = "UTF-8"
 port  = 25
 password = "Radixweb@13"
 smtp_server = "192.168.100.101"
-SENDER_EMAIL = "anirudh.chawla@radixweb.com"
+SENDER_EMAIL = "akash.kareliya@radixweb.com"
 
 conf = ConnectionConfig(
     MAIL_USERNAME = "radixdt.2336@gmail.com",
     MAIL_PASSWORD = "Radixweb@13",
-    MAIL_FROM = "anirudh.chawla@radixweb.com",
+    MAIL_FROM = "akash.kareliya@radixweb.com",
     MAIL_PORT = 587,
     MAIL_SERVER = "smtp.gmail.com",
     MAIL_TLS = True,
@@ -82,7 +81,7 @@ class EmailManager:
 # port  = 25
 # password = "Radixweb@13"
 # smtp_server = "192.168.100.101"
-# SENDER_EMAIL="anirudh.chawla@radixweb.com"
+# SENDER_EMAIL="akash.kareliya@radixweb.com"
 
 # class EmailManager:
 #     server = smtplib.SMTP(smtp_server,port)

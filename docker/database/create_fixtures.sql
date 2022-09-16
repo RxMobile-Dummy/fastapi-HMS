@@ -1,0 +1,3 @@
+CREATE DATABASE doctor;
+CREATE DATABASE appointment;
+CREATE DATABASE patient;

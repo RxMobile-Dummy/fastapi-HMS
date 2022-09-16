@@ -9,4 +9,4 @@ class Affiliation(Base):
     department_id = Column(String, index=True)
     primaryaffiliation = Column(String, index=True)
 
-DATABASE_URL = 'postgresql://anirudh.chawla:123@localhost/affiliation'
+DATABASE_URL = 'postgresql+psycopg2://akash.kareliya:123@localhost:5432/affiliation'

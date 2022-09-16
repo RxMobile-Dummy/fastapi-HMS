@@ -38,5 +38,10 @@ app.include_router(router=doctor_router,prefix="/doctor")
 app.include_router(router=appointment_router,prefix="/appointment")
 app.include_router(router=patient_router,prefix="/patient")
 
+@app.get("/")
+def root():
+    return {"message": "Hello World"}
+
+
 if __name__ == "__main__":
-    uvicorn.run(app)
+    uvicorn.run(app,port=5000)

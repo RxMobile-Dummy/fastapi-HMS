@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 import appointment.config
 
 DATABASE_URL = appointment.config.Config.DATABASE_URL
-appointment_engine = create_engine(url='postgresql://anirudh.chawla:123@localhost/appointment',)
+appointment_engine = create_engine(url='postgresql+psycopg2://akash.kareliya:123@host.docker.internal:54321/appointment',)
 
 SessionLocal = sessionmaker(bind=appointment_engine,autocommit=False,autoflush=False,expire_on_commit=False)
 
